@@ -1,0 +1,21 @@
+apply plugin : "scala"
+
+    repositories {
+
+            mavenCentral()
+            mavenLocal()
+    }
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE") 
+compile 'org.slf4j:slf4j-api:1.7.5'
+    compile "org.scala-lang:scala-library:2.11.4"
+    testCompile "junit:junit:4.11"
+}
+
+task run(type: JavaExec, dependsOn: classes) {
+       main="hello.HelloWebApplication"
+       classpath sourceSets.main.runtimeClasspath
+       classpath configurations.runtime
+}
+

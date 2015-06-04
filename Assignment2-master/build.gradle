@@ -1,0 +1,43 @@
+import java.sql.Wrapper
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+
+
+mainClassName = 'vote.Application'
+
+jar {
+    baseName = 'myvote'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile 'org.apache.kafka:kafka_2.11:0.8.2.1'
+    compile 'org.springframework:spring-context-support:4.1.5.RELEASE'
+    
+}
+
+configurations {
+    compile.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
